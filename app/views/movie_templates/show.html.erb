@@ -49,12 +49,14 @@
   </dt>
   <dd>
     <% dir_id = @the_movie.director_id %>
-    
     <% matching_directors = Director.where({ :id => dir_id }) %>
-    
     <% the_director = matching_directors.at(0) %>
 
-    <%= the_director.name %>
+    <% if the_director.present? %>
+      <%= the_director.name %>
+    <% else %>
+      <em>No director found</em>
+    <% end %>
   </dd>
 
   <dt>
@@ -73,3 +75,19 @@
 </dl>
 
 <hr>
+
+<h2>Update this movie</h2>
+
+<form action="/update_movie/<%= @the_movie.id %>" method="post">
+  <div>
+    <label for="image_field">Image</label>
+    <input id="image_field" type="text" name="the_image" value="<%= @the_movie.image %>">
+  </div>
+
+  <button>Update movie</button>
+</form>
+
+<hr>
+
+<h3>Delete this movie</h3>
+<a href="/delete_movie/<%= @the_movie.id %>">Delete movie</a>
