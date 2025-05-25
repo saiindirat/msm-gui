@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get("/", { :controller => "misc", :action => "homepage" })
 
-  # DIRECTORS - specific routes BEFORE wildcard
+  # DIRECTORS 
   get("/directors/youngest", { :controller => "directors", :action => "max_dob" })
   get("/directors/eldest", { :controller => "directors", :action => "min_dob" })
   get("/directors", { :controller => "directors", :action => "index" })
